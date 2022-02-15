@@ -21,6 +21,7 @@ async function run() {
         const database = client.db('e_shoper')
         const productCollection = database.collection('products')
         const userCollection = database.collection('user')
+        const reviewCollection = database.collection('review')
 
           // get api
           app.get('/products', async(req, res)=> {
@@ -64,6 +65,30 @@ async function run() {
         res.json(result)
     })
 
+    app.get('/users/:email', async(req, res)=> {
+        const email= req.params.email
+        const query = {email: email}
+        const user = await userCollection.findOne(query)
+        let isAdmin = false;
+        if(user?.role === 'admin'){
+          isAdmin = true;
+        }
+        res.json({admin : isAdmin})
+      })
+      
+
+      // Review post
+      app.post('/addReview', async (req,res)=> {
+        const review = req.body
+        const result = await reviewCollection.insertOne(review)
+        res.send(result)
+      })
+       // review get
+       app.get('/addReview', async(req, res)=> {
+        const cursor = reviewCollection.find({})
+        const result =  await cursor.toArray()
+        res.send(result)
+    })
 
 
 
