@@ -58,9 +58,8 @@ async function run() {
     })
     app.put('/users/admin' , async (req, res) => {
         const user = req.body;
-        console.log('put', user)
         const filter = {email: user.email }; 
-        const updateDoc = {$set: {role: 'admin' } };
+        const updateDoc = {$set: {admin: true } };
         const result = await userCollection.updateOne(filter, updateDoc)
         res.json(result)
     })
@@ -70,8 +69,10 @@ async function run() {
         const query = {email: email}
         const user = await userCollection.findOne(query)
         let isAdmin = false;
-        if(user?.role === 'admin'){
+        if(user?.admin === true){
           isAdmin = true;
+        }else{
+          isAdmin= false
         }
         res.json({admin : isAdmin})
       })
