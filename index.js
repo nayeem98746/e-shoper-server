@@ -119,18 +119,18 @@ async function run() {
               val_id:req.body.val_id
             }
           })
-          res.status(200).redirect('http://localhost:3000/success')
+          res.status(200).redirect('https://phero-team-projects.web.app/success')
         
         })
         app.post('/fail',async(req,res) =>{
           const order = await orderCollection.deleteOne({tran_id:req.body.tran_id})
           console.log(req.body)
-          res.status(400).redirect('http://localhost:3000')
+          res.status(400).redirect('https://phero-team-projects.web.app')
         
         })
         app.post('/cancel',async(req,res) =>{
           console.log(req.body)
-          res.status(200).redirect('http://localhost:3000')
+          res.status(200).redirect('https://phero-team-projects.web.app')
         
         })
 
