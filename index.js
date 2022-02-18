@@ -50,10 +50,10 @@ async function run() {
 
     app.put('/users', async (req, res) => {
         const user = req.body;
-        const filter = {email: user.email};
+        // const filter = {email: user.email};
         const options = { upsert: true };
         const updateDoc = {$set: user};
-        const result = await userCollection.updateOne(filter, updateDoc, options)
+        const result = await userCollection.updateOne( updateDoc, options)
         res.json(result) 
     })
     app.put('/users/admin' , async (req, res) => {
