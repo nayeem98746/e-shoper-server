@@ -6,7 +6,7 @@ require('dotenv').config();
 const { MongoClient } = require('mongodb');
 const objectId = require("mongodb").objectId;
 const { v4: uuidv4 } = require('uuid');
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 5000
 
 app.use(cors())
 app.use(express.json())
