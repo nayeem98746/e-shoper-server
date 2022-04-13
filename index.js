@@ -7,7 +7,7 @@ const { MongoClient } = require('mongodb');
 const objectId = require("mongodb").objectId;
 const { v4: uuidv4 } = require('uuid');
 const port = process.env.PORT || 5000
-
+// cors use
 app.use(cors())
 app.use(express.json())
 
